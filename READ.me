@@ -1,0 +1,18 @@
+1. Pick an infrastructure as a code tool of choice
+ -> Terraform
+
+2. Provision example application following the architecture diagram below
+ -> The terraform code is in the repository
+
+3. Write down security recommendation for each service
+ -> . Use managed identity to app service to access database and all other resources
+    . Use NSG to control inbound/outbound traffic and restrict access only to necessary IPs
+    . Use Azure Private Endpoints on traffic between the resources (ex: Azure SQL to WebApp or Redis)
+    . Use Azure Key Vault for the application to get database connection string and other sensitive database
+    . Use WAF on Azure FrontDoor to protect the application against DDOS, SQL Injection and so on
+    . Perform Backup of the database
+    . Create proper alerts for the environment resources
+    . Use GIT Flow to control the IaC code version
+
+4. Suggest logging and monitoring
+ -> Use AppInsight (with Log Analytics Workspace) to collect metrics and logs from the infrastructure. 
